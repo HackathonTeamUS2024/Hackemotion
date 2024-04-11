@@ -146,7 +146,7 @@ public class User {
             this.placeOfResidence = placeOfResidence;
         }
         // village
-        // smallTown > 20k
+        // smallTown < 20k
         // midTown > 20k-100k
         // bigTown > 100k
         else throw new IllegalArgumentException("Nieprawidlowa wielkosc miasta");
