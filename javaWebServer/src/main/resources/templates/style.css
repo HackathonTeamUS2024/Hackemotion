@@ -7,10 +7,12 @@ body{
     color: white;
 }
 
-a
+
+a p
 {
     color: white !important;
     text-decoration: none;
+    font-size: 2.3vmin !important;
 }
 
 
