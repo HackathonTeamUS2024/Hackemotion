@@ -20,6 +20,7 @@ public class User {
     private long userId;
     @NotNull @NotEmpty @Email
     private String email;
+    private String token;
     @NotNull @NotEmpty
     @Pattern(regexp ="\"^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{6,13}$\"")
     // Walidacja hasla:
@@ -27,8 +28,8 @@ public class User {
     // - co najmniej 1 znak specjalny
     // - co najmniej 1 liczba
     // - co najmniej 1 duza litera
-    private byte[] password;
-    private byte[] salt;
+    private byte[] password = new byte[64];
+    private byte[] salt = new byte[32];
     @NotNull @NotEmpty @Size(max=30)
     private String name;
     @NotNull @NotEmpty @Size(max=30)
@@ -63,6 +64,14 @@ public class User {
 
     public void setUserId(long userId) {
         this.userId = userId;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public byte[] getSalt() {

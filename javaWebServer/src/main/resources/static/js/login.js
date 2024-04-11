@@ -5,9 +5,8 @@ window.onload = function() {
         let formData = new FormData();
         formData.append('email', document.getElementById("email").value);
         formData.append('password', document.getElementById("password").value);
-        formData.append('name', document.getElementById("name").value);
-        formData.append('password', document.getElementById("password").value);
-        fetch('/api/register', {
+
+        fetch('/api/login', {
             method: 'POST',
             body: formData
         })
@@ -15,15 +14,15 @@ window.onload = function() {
             if (!response.ok) {
                 throw new Error('Błąd sieci!');
             }
-            return response.json();  
+            return response.json();  // Tutaj przekształcamy odpowiedź w JSON
         })
         .then(data => {
-            console.log(data);  
-            alert('Sukces: ' + JSON.stringify(data));  
+            console.log(data);  // Tutaj logujemy dane do konsoli
+            alert('Sukces: ' + JSON.stringify(data));  // Tutaj wyświetlamy dane w alercie
         })
         .catch((error) => {
-            console.error(error);  
-            alert('Błąd: ' + error.message);  
+            console.error(error);  // Tutaj logujemy błąd do konsoli
+            alert('Błąd: ' + error.message);  // Tutaj wyświetlamy błąd w alercie
         });
     });
 }
