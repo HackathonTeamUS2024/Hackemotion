@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="490bdcd9-d903-47da-9f67-bc7c9a9cbd30" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/javaWebServer/src/main/java/com/example/emotion/db_access/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/javaWebServer/src/main/java/com/example/emotion/db_access/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/javaWebServer/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/javaWebServer/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/javaWebServer/src/main/resources/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/javaWebServer/src/main/resources/templates/login.html" afterDir="false" />
-    </list>
+    <list default="true" id="490bdcd9-d903-47da-9f67-bc7c9a9cbd30" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -58,9 +53,10 @@
     "Gradle.javaWebServer [:EmotionApplication.main()].executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "android.gradle.sync.needed": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/Hackemotion",
+    "last_opened_file_path": "C:/Users/mikos/Desktop/Hackemotion/javaWebServer",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
