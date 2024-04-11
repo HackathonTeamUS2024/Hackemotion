@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
->
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -23,25 +21,23 @@
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="../static/css/bootstrap.css" />
-    <link rel="stylesheet" href="../static/css/style.css" />
-    <link rel="shortcut icon" href="../static/zdjecia/ikona i logo.png">
+    <link rel="stylesheet" href="./bootstrap-5.0.2-dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="../templates/zdjecia/ikona i logo.png">
   </head>
 
   <body>
     <nav class="navbar navbar-expand-lg navbar-light">
       <div class="container-fluid header">
-        
+        <div>
         <a href="#"><img
-          src="../static/zdjecia/ikona i logo.png"
+          src="../templates/zdjecia/ikona i logo.png"
           class="img-fluid h-100 rounded float-start"
           alt=""
         />
-
         </a>
-
-        <p class="login my-auto me-auto">zaloguj </p>
-
+      </div>
+      <p class="text-center">zaloguj </p>
         <button
           class="navbar-toggler"
           type="button"
@@ -56,20 +52,20 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a class="nav-link fs-5 mx-3 text-center " href="#"
-                ><p>> Strona główna</p></a
-              >
-            </li>
-            <li class="nav-item ">
-              <a class="nav-link fs-5 mx-3 text-center " href="#"
-                ><p>> Tryby nauki</p></a
+              <a class="nav-link fs-5 mx-3 text-center" href="#"
+                >> Strona główna</a
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link fs-5 mx-3 text-center" href="#"><p>> źródła</p></a>
+              <a class="nav-link fs-5 mx-3 text-center" href="#"
+                >> Tryby nauki</a
+              >
             </li>
             <li class="nav-item">
-              <a class="nav-link fs-5 mx-3 text-center" href="#"><p>>Oglądaj i zapamiętaj</p></a>
+              <a class="nav-link fs-5 mx-3 text-center" href="#">> źródła</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fs-5 mx-3 text-center" href="#">>Oglądaj i zapamiętaj</a>
             </li>
             
           </ul>
@@ -82,7 +78,7 @@
         
         <div class="col p-3">
             <div class="d-flex justify-content-center">
-            <img src="../static/zdjecia/strona glowna.jpg" class="" alt="">
+            <img src="../templates/zdjecia/strona glowna.jpg" class="" alt="">
             </div>
             <h2>Jak rozpoznawać wyrażane emocje?</h2>
             <span>
@@ -90,7 +86,7 @@
             </span>
         </br></br></br>
             <div class="pictureQuestion">
-            <img src="../static/zdjecia/question.jpg" class="float-md-start float-sm-none" alt="">
+            <img src="../templates/zdjecia/question.jpg" class="float-md-start float-sm-none" alt="">
           </div>
             <h2>Na co zwrócić uwagę?</h2>
             <span>
@@ -128,6 +124,6 @@
   
   </script>
 
-  <script src="bootstrap-5.0.2-dist/bootstrap.js"></script>
+    <script src="js/bootstrap.js"></script>
   </body>
 </html>
