@@ -1,0 +1,120 @@
+body{
+    font-family: 'JetBrains Mono', monospace;
+    background-color: #361252;
+    height: 100vh !important;
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+
+a
+{
+    color: white !important;
+    text-decoration: none;
+}
+
+
+
+.header{
+    background: #061623;
+    min-height: 10vmin !important;
+}
+.footer{
+    background: #061623;
+}
+.header img{
+    max-width: 10vmin;
+    min-width: 40px;
+}
+
+.footer{
+    margin-top: 50px;
+}
+
+nav{
+    padding-top: 0 !important;
+}
+.navbar {
+    z-index: 1000; 
+}
+
+.show{
+    background-color: #061623;
+    padding-bottom: 30px;
+    padding-top: 30px;
+    border-radius: 0px 0px 20px 20px;
+}
+.navbar-light .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(255, 255, 255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+.nav-link{
+    transition: all 0.4s;
+}
+
+.nav-link:hover{
+    background-color: #092e4c;
+    border-radius: 20px;
+}
+
+@media (max-width: 991.98px) {
+    .navbar-light .navbar-nav .nav-link {
+        border: 2px solid white;
+        border-radius: 10px 10px 10px 10px;
+    }
+}
+
+.main{
+    flex-grow: 1;
+}
+
+.zdjecia img{
+    width: 35vmin;
+    height: 40vmin;
+    border-radius: 30px 30px 0px 0px;
+    
+}
+
+.expression, .bodyLanguage, .wayOfSpeaking, .additionalLearning{   
+    transition: all 0.5s;
+    background-color: #004F8E;
+    border-radius: 30px;
+}
+
+.zdjecia h3{
+    font-size: 3vmin; 
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.expression:hover, .bodyLanguage:hover, .wayOfSpeaking:hover, .additionalLearning:hover
+{
+    box-sizing: border-box;
+    transform: scale(1.1);
+    background-color: #092e4c;
+    box-shadow: 7px 10px 10px #88888875; 
+    overflow-wrap: break-word;
+}
+
+.expression:hover > h3::before, .bodyLanguage:hover > h3::before, .wayOfSpeaking:hover > h3::before, .additionalLearning:hover >h3::before{
+    content: '>';
+}
+
+.footerText{
+    font-size: 2vmin;
+}
+
+
+.main img{
+    width: 50vmin;
+    border: 3vmin outset #004F8E;
+}
+
+@media (max-width: 991.98px) {
+    .pictureQuestion {
+        display: flex;
+        justify-content: center;
+    }
+}
+
