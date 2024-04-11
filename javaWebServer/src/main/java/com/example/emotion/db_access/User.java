@@ -3,59 +3,52 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.*;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.web.bind.annotation.RestController;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.time.LocalDate;
+import java.util.Arrays;
 
 @Entity
 public class User {
     @Id
-    @NotNull @NotEmpty
     @GeneratedValue(strategy= GenerationType.AUTO)
+    @Column(name="userId")
     private long userId;
-    @NotNull @NotEmpty @Email
+
     private String email;
     private String token;
-    @NotNull @NotEmpty
-    @Pattern(regexp ="\"^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{6,13}$\"")
-    // Walidacja hasla:
-    // - 8 znakow min, 15 znakow max
-    // - co najmniej 1 znak specjalny
-    // - co najmniej 1 liczba
-    // - co najmniej 1 duza litera
     private byte[] password = new byte[64];
     private byte[] salt = new byte[32];
-    @NotNull @NotEmpty @Size(max=30)
+
     private String name;
-    @NotNull @NotEmpty @Size(max=30)
+
     private String surname;
-    @NotNull @NotEmpty
+    @Column(name="birthYear")
+
     private Integer birthYear;
-    @NotNull @NotEmpty
+
     private String sex;
-    @NotNull @NotEmpty
+    @Column(name="placeOfResidence")
     private String placeOfResidence;
-    @Size(max=256)
+
+    @Column(name="additionalInformation")
+
     private String additionalInformation;
 
     public User() {}
 
-    public User( String email, String password, String name, String surname, Integer birthYear, String sex, String placeOfResidence, String additionalInformation) throws NoSuchAlgorithmException {
-        SecureRandom random = new SecureRandom();
+    public User( String email, String password, String name, String surname, Integer birthYear, String sex, String placeOfResidence) throws NoSuchAlgorithmException {
         setEmail(email);
         setPassword(password);
-        random.nextBytes(salt);
         setName(name);
         setSurname(surname);
         setBirthYear(birthYear);
         setSex(sex);
         setPlaceOfResidence(placeOfResidence);
-        setAdditionalInformation(additionalInformation);
     }
 
     public long getUserId() {
@@ -94,15 +87,6 @@ public class User {
         return password;
     }
 
-    public void setPassword(String password) throws NoSuchAlgorithmException {
-        if(password==null || password.isEmpty()){ throw new NullPointerException();}
-        if(!password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{6,13}$")){ throw new IllegalArgumentException(); }
-        SecureRandom random = new SecureRandom();
-        MessageDigest md = MessageDigest.getInstance("SHA-512");
-        md.update(getSalt());
-        this.password = md.digest(password.getBytes(StandardCharsets.UTF_8));
-    }
-
     public String getName() {
         return name;
     }
@@ -124,8 +108,8 @@ public class User {
     }
 
     public void setBirthYear(Integer birthYear) {
-        int currentYear = LocalDate.now().getYear();
-        if(currentYear - birthYear >= 3) {
+        //int currentYear = LocalDate.now().getYear();
+        if(birthYear <= 2021) {
             this.birthYear = birthYear;
         } else {
             throw new IllegalArgumentException("Uczestnik nie moze miec mniej niz 3 lata");
@@ -168,7 +152,19 @@ public class User {
     public void setAdditionalInformation(String additionalInformation) {
         this.additionalInformation = additionalInformation;
     }
+    public void setPassword(String password) throws NoSuchAlgorithmException {
+        SecureRandom random = new SecureRandom();
+        if(!password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{6,13}$")){ throw new IllegalArgumentException(); }
+        random.nextBytes(salt);
+        MessageDigest md = MessageDigest.getInstance("SHA-512");
+        md.update(salt);
+        setSalt(salt);
+        this.password = md.digest(password.getBytes(StandardCharsets.UTF_8));
+    }
+    public boolean login(String password) throws NoSuchAlgorithmException {
+        MessageDigest md = MessageDigest.getInstance("SHA-512");
+        md.update(this.salt);
+        return Arrays.equals(this.password, md.digest(password.getBytes(StandardCharsets.UTF_8)));
+    }
 
 }
-
-
