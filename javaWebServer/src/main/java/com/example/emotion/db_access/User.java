@@ -1,17 +1,35 @@
 package com.example.emotion.db_access;
 
+import jakarta.validation.constraints.*;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.time.LocalDate;
 
 @RestController
 public class User {
+    @NotNull @NotEmpty
     private long userId;
+    @NotNull @NotEmpty @Email
     private String email;
+    @NotNull @NotEmpty
+    @Pattern(regexp ="\"^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{6,13}$\"")
+    // Walidacja hasla:
+    // - 8 znakow min, 15 znakow max
+    // - co najmniej 1 znak specjalny
+    // - co najmniej 1 liczba
+    // - co najmniej 1 duza litera
     private String password;
+    @NotNull @NotEmpty @Size(max=30)
     private String name;
+    @NotNull @NotEmpty @Size(max=30)
     private String surname;
+    @NotNull @NotEmpty
     private Integer birthYear;
+    @NotNull @NotEmpty
     private String sex;
+    @NotNull @NotEmpty
     private String placeOfResidence;
+    @Size(max=256)
     private String additionalInformation;
 
     public User() {}
@@ -73,7 +91,13 @@ public class User {
     }
 
     public void setBirthYear(Integer birthYear) {
-        this.birthYear = birthYear;
+        int currentYear = LocalDate.now().getYear();
+        if(currentYear - birthYear >= 3) {
+            this.birthYear = birthYear;
+        } else {
+            throw new IllegalArgumentException("Uczestnik nie moze miec mniej niz 3 lata");
+        }
+
     }
 
     public String getSex() {
@@ -81,7 +105,11 @@ public class User {
     }
 
     public void setSex(String sex) {
-        this.sex = sex;
+        if (sex.equals("male") || sex.equals("female")) {
+            this.sex = sex;
+        } else {
+            throw new IllegalArgumentException("Nieprawidłowa płeć");
+        }
     }
 
     public String getPlaceOfResidence() {
