@@ -30,11 +30,7 @@
     <nav class="navbar navbar-expand-lg navbar-light">
       <div class="container-fluid header">
         
-<<<<<<< Updated upstream
         <a href="login"><img
-=======
-        <a href="#"><img
->>>>>>> Stashed changes
           th:src="@{/zdjecia/ikona i logo.png}"
           class="img-fluid h-100 rounded float-start"
           alt=""
@@ -122,8 +118,8 @@
                     <input type="text" class="form-control" id="enterSurname">
                 </div>
                 <div class="mb-3">
-                  <label for="age">Lata:</label>
-                  <input type="number" class="form-control" id="age" max="120" min="9">
+                  <label for="age">Rok Urodzenia:</label>
+                  <input type="number" class="form-control" id="age" min="1900">
               </div>
                 <p>Podaj swoją płeć:</p>
                 <div class=" form-check-inline">
@@ -134,16 +130,17 @@
                     <input class="form-check-input" type="radio" name="gender" id="female" value="female"/>
                     <label class="form-check-label" for="female"> Kobieta</label>
                 </div>
-
-
+                <br>
+                <br>
                 <select>
                   <option value="village">Wieś</option>
-                  <option value="small town">Małe miasto(&lt;20 tys. mieszkańców)</option>
-                  <option value="mid town">Średnie miasto(20-100tys. mieszkańców)</option>
-                  <option value="big town">Duże miasto(>100tys. mieszkańców)</option>
+                  <option value="smallTown">Małe miasto(&lt;20 tys. mieszkańców)</option>
+                  <option value="midTown">Średnie miasto(20-100tys. mieszkańców)</option>
+                  <option value="bigTown">Duże miasto(>100tys. mieszkańców)</option>
                 </select>
                 
-
+                <br>
+                <br>
                 <button type="submit" class="btn btn-primary">Zarejestruj</button>
             </form>
         </div>

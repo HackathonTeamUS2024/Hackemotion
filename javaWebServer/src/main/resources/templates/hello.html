@@ -23,6 +23,7 @@
     
     <link rel="stylesheet" th:href="@{/css/bootstrap.css}" />
     <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <link rel="stylesheet" th:href="@{/css/styleMain.css}" />
     <link rel="shortcut icon" th:href="@{/zdjecia/ikona i logo.png}">
   </head>
 
@@ -30,7 +31,7 @@
     <nav class="navbar navbar-expand-lg navbar-light">
       <div class="container-fluid header">
         
-        <a th:href="login.html"><img
+        <a th:href="login"><img
           th:src="@{/zdjecia/ikona i logo.png}"
           class="img-fluid h-100 rounded float-start"
           alt=""
@@ -77,14 +78,14 @@
       </div>
     </nav>
 
-    <div class="container-fluid main ">
+    <div class="container-fluid main">
       <div class="row">
         
         <div class="col p-3">
             <div class="d-flex justify-content-center">
             <img th:src="@{/zdjecia/strona glowna.jpg}" class="" alt="">
             </div>
-            <h2>Jak rozpoznawać wyrażane emocje?</h2>
+            <h2 class="my-4">Jak rozpoznawać wyrażane emocje?</h2>
             <span>
                 Lorem Ipsum to po prostu fikcyjny tekst branży poligraficznej i składu. Lorem Ipsum jest standardowym fikcyjnym tekstem stosowanym w branży od XVI wieku, kiedy nieznany drukarz wziął kuchenkę z czcionkami i przemieszał ją, aby stworzyć wzornik czcionek. Przetrwał nie tylko pięć wieków, ale także skok w stronę składu elektronicznego, pozostając w zasadzie niezmieniony. Został spopularyzowany w latach sześćdziesiątych XX wieku wraz z wydaniem arkuszy Letraset zawierających fragmenty Lorem Ipsum, a ostatnio wraz z oprogramowaniem do publikowania na komputerach stacjonarnych, takim jak Aldus PageMaker, zawierającym wersje Lorem Ipsum.
             </span>
@@ -127,7 +128,6 @@
     >
   
   </script>
-
   <script th:src="@{/js/bootstrap.js}"></script>
   </body>
 </html>
