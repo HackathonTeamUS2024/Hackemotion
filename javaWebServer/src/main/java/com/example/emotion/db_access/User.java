@@ -1,13 +1,22 @@
 package com.example.emotion.db_access;
-
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.*;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.web.bind.annotation.RestController;
-
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.time.LocalDate;
 
-@RestController
+@Entity
 public class User {
+    @Id
     @NotNull @NotEmpty
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private long userId;
     @NotNull @NotEmpty @Email
     private String email;
@@ -18,7 +27,8 @@ public class User {
     // - co najmniej 1 znak specjalny
     // - co najmniej 1 liczba
     // - co najmniej 1 duza litera
-    private String password;
+    private byte[] password;
+    private byte[] salt;
     @NotNull @NotEmpty @Size(max=30)
     private String name;
     @NotNull @NotEmpty @Size(max=30)
@@ -34,16 +44,17 @@ public class User {
 
     public User() {}
 
-    public User(long userId, String email, String password, String name, String surname, Integer birthYear, String sex, String placeOfResidence, String additionalInformation) {
-        this.userId = userId;
-        this.email = email;
-        this.password = password;
-        this.name = name;
-        this.surname = surname;
-        this.birthYear = birthYear;
-        this.sex = sex;
-        this.placeOfResidence = placeOfResidence;
-        this.additionalInformation = additionalInformation;
+    public User( String email, String password, String name, String surname, Integer birthYear, String sex, String placeOfResidence, String additionalInformation) throws NoSuchAlgorithmException {
+        SecureRandom random = new SecureRandom();
+        setEmail(email);
+        setPassword(password);
+        random.nextBytes(salt);
+        setName(name);
+        setSurname(surname);
+        setBirthYear(birthYear);
+        setSex(sex);
+        setPlaceOfResidence(placeOfResidence);
+        setAdditionalInformation(additionalInformation);
     }
 
     public long getUserId() {
@@ -54,6 +65,14 @@ public class User {
         this.userId = userId;
     }
 
+    public byte[] getSalt() {
+        return salt;
+    }
+
+    public void setSalt(byte[] salt) {
+        this.salt = salt;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -62,12 +81,17 @@ public class User {
         this.email = email;
     }
 
-    public String getPassword() {
+    public byte[] getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPassword(String password) throws NoSuchAlgorithmException {
+        if(password==null || password.isEmpty()){ throw new NullPointerException();}
+        if(!password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{6,13}$")){ throw new IllegalArgumentException(); }
+        SecureRandom random = new SecureRandom();
+        MessageDigest md = MessageDigest.getInstance("SHA-512");
+        md.update(getSalt());
+        this.password = md.digest(password.getBytes(StandardCharsets.UTF_8));
     }
 
     public String getName() {
@@ -118,7 +142,7 @@ public class User {
 
     public void setPlaceOfResidence(String placeOfResidence) {
         if(placeOfResidence.equals("village") || placeOfResidence.equals("smallTown") ||
-           placeOfResidence.equals("midTown") || placeOfResidence.equals("bigTown") ) {
+                placeOfResidence.equals("midTown") || placeOfResidence.equals("bigTown") ) {
             this.placeOfResidence = placeOfResidence;
         }
         // village
@@ -137,3 +161,5 @@ public class User {
     }
 
 }
+
+
