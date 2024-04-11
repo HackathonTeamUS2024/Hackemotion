@@ -1,0 +1,40 @@
+
+
+.photo{
+    border-radius: 20px;
+    width: 60vmin;
+    height: 60vmin;
+    border: 4vmin outset #004F8E;
+    background-color: #092e4c;
+  }
+
+.btn:hover > span::before {
+    content: '>';
+}
+
+.theory{
+  font-size: 3vmin;
+  background-color: #092e4c;
+  border: 3px solid #05192a;
+  border-radius: 20px;
+  width: 25vmin;
+  height: 10vmin;
+  color: white;
+}
+
+
+
+.btn, .answer{
+  
+  font-size: 3vmin;
+  padding: 1rem;
+  margin: 4px;
+}
+.btn{
+  border: 3px solid #05192a;
+}
+
+.blockTeory{
+  margin-left: auto;
+  color: white;
+}

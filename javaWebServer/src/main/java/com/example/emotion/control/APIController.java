@@ -4,7 +4,7 @@ import com.example.emotion.db_access.User;
 import com.example.emotion.db_access.UserRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -15,6 +15,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.UUID;
 
 @RestController
+@Service
 @RequestMapping("/api")
 public class APIController {
     @Autowired
@@ -25,23 +26,13 @@ public class APIController {
     public ObjectNode login(@RequestParam String email, @RequestParam String password) throws NoSuchAlgorithmException {
         ObjectNode response = JsonNodeFactory.instance.objectNode();
         User UserLog = userRepository.findByEmail(email);
-        if (UserLog == null) {
-            response.put("message", "User does not exist.");
-            return response;
-        }
         MessageDigest md = MessageDigest.getInstance("SHA-512");
-        md.update(UserLog.getSalt());
-        if (UserLog.getPassword() == md.digest(password.getBytes(StandardCharsets.UTF_8))) {
-            response.put("message", "Success");
-            UserLog.setToken(UUID.randomUUID().toString());
-            response.put("token", UserLog.getToken());
-            userRepository.save(UserLog);
-            return response;
-        }
-        response.put("message", "failure");
-        return response;
+            if(UserLog.login(password)) {
+                response.put("message", 1);
+                return response;
+            }
+        return response.put("message", 0);
     }
-    @Transactional
     @PostMapping("/register")
     public ObjectNode register(@RequestParam String email,
                                @RequestParam String password,
@@ -49,23 +40,24 @@ public class APIController {
                                @RequestParam String surname,
                                @RequestParam Integer birthYear,
                                @RequestParam String sex,
-                               @RequestParam String placeOfResidence,
-                               @RequestParam String additionalInformation) {
+                               @RequestParam String placeOfResidence) throws NoSuchAlgorithmException {
         ObjectNode response = JsonNodeFactory.instance.objectNode();
+        User newUser = new User(email,password,name,surname,birthYear,sex,placeOfResidence);
         try {
-            userRepository.save(new User(email, password, name, surname, birthYear, sex, placeOfResidence, additionalInformation));
+            saveUser(newUser);
         }
-        catch (Exception e){
-            return response.put("message", e.getMessage());
+        catch (Exception e) {
+            response.put("message", e.getMessage());
         }
-        response.put("data2",password);
-        response.put("data3",name);
-        response.put("data4",surname);
-        response.put("data5",birthYear);
-        response.put("data6",sex);
-        response.put("data7",placeOfResidence);
-        response.put("data8",additionalInformation);
+        response.put("haslo", newUser.getPassword());
         response.put("message", "Registered successfully");
         return response;
+    }
+    @RequestMapping(value="/getRes", method = RequestMethod.GET)
+    public @ResponseBody String getRes(@RequestParam String type){
+        return "Chciany typ: " + type;
+    }
+    public void saveUser(User user) {
+        userRepository.save(user);
     }
 }

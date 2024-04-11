@@ -9,7 +9,7 @@ body{
 
 ul li a p{
     margin: auto;
-    color: white;
+    color: white !important;
 }
 
 a{
