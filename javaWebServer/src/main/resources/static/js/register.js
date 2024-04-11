@@ -7,6 +7,7 @@ window.onload = function() {
         formData.append('password', document.getElementById("password").value);
         formData.append('name', document.getElementById("name").value);
         formData.append('password', document.getElementById("password").value);
+        
         fetch('/api/register', {
             method: 'POST',
             body: formData
