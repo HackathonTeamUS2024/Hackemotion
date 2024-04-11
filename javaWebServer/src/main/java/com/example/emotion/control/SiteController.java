@@ -7,5 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("")
 public class SiteController {
-
+    @GetMapping("/hello")
+    public String helloSite() {
+        return "hello";
+    }
 }
