@@ -80,7 +80,7 @@
       <div class="row h-100">
         <div class="col-md-6 d-flex flex-column justify-content-center align-items-center">
             <h1>Zaloguj się</h1>
-            <form>
+            <form id="loginForm" action="/api/login" method="post">
                 <div class="mb-3 ">
                   <label for="enterEmail1" class="form-label">Adres email</label>
                   <input type="email" class="form-control" id="enterEmail1">
@@ -93,7 +93,7 @@
                   <input type="checkbox" class="form-check-input" id="exampleCheck1">
                   <label class="form-check-label" for="exampleCheck1">Zapamiętaj mnie</label>
                 </div>
-                <button type="submit" class="btn btn-primary">Zaloguj</button>
+                <button type="submit" class="btn btn-primary" id="loginButton">Zaloguj</button>
             </form>
         
         </div>
@@ -102,36 +102,36 @@
             <form id="registerForm">
                 <div class="mb-3 ">
                   <label for="enterEmail2" class="form-label w-100">Adres email:</label>
-                  <input type="email" class="form-control" id="enterEmail2">
+                  <input type="email" class="form-control" id="email">
                 </div>
                 <div class="mb-3">
                   <label for="enterPassword2" class="form-label">Hasło:</label>
-                  <input type="password" class="form-control" id="enterPassword2" minlength="8" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Musi zawierać co najmniej jedną cyfrę, jedną dużą i małą literę oraz co najmniej 8 lub więcej znaków" required>
+                  <input type="password" class="form-control" id="password" minlength="8" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Musi zawierać co najmniej jedną cyfrę, jedną dużą i małą literę oraz co najmniej 8 lub więcej znaków" required>
                 </div>
                 <div class="mb-3">
                     <label for="enterName" class="form-label">Imie:</label>
-                    <input type="text" class="form-control" id="enterName">
+                    <input type="text" class="form-control" id="name">
                 </div>
                 <div class="mb-3">
                     <label for="enterSurname" class="form-label">Nazwisko:</label>
-                    <input type="text" class="form-control" id="enterSurname">
+                    <input type="text" class="form-control" id="surname">
                 </div>
                 <div class="mb-3">
                   <label for="age">Lata:</label>
-                  <input type="number" class="form-control" id="birthYear" max="120" min="9">
+                  <input type="number" class="form-control" id="birthYear">
               </div>
                 <p>Podaj swoją płeć:</p>
                 <div class=" form-check-inline">
-                    <input class="form-check-input" type="radio" name="gender" id="sex" value="male"/>
+                    <input class="form-check-input" type="radio" name="gender" id="sex-male" value="male"/>
                     <label class="form-check-label" for="male"> Mężczyzna </label>
                 </div>
                 <div class="form-check-inline">  
-                    <input class="form-check-input" type="radio" name="gender" id="sex" value="female"/>
+                    <input class="form-check-input" type="radio" name="gender" id="sex-female" value="female"/>
                     <label class="form-check-label" for="female"> Kobieta</label>
                 </div>
                 <br>
                 <br>
-                <select>
+                <select id="city">
                   <option value="village">Wieś</option>
                   <option value="smallTown">Małe miasto(&lt;20 tys. mieszkańców)</option>
                   <option value="midTown">Średnie miasto(20-100tys. mieszkańców)</option>
@@ -160,6 +160,5 @@
   </script>
 
   <script src="../bootstrap-5.0.2-dist/bootstrap.js"></script>
-  <script src="/static/js/register.js"></script>
   </body>
 </html>
