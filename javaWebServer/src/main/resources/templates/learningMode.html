@@ -30,7 +30,7 @@
     <nav class="navbar navbar-expand-lg navbar-light">
       <div class="container-fluid header">
         
-        <a href="#"><img
+        <a href="login"><img
           th:src="@{/zdjecia/ikona i logo.png}"
           class="img-fluid h-100 rounded float-start"
           alt=""
@@ -38,7 +38,9 @@
 
         </a>
 
-        <p class="login my-auto me-auto">zaloguj </p>
+        <a class="me-auto" th:href="login">
+          <p class="login my-auto">zaloguj </p>
+        </a>
 
         <button
           class="navbar-toggler"
@@ -54,12 +56,12 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a class="nav-link fs-5 mx-3 text-center " href="#"
+              <a class="nav-link fs-5 mx-3 text-center " href="hello"
                 ><p>> Strona główna</p></a
               >
             </li>
             <li class="nav-item ">
-              <a class="nav-link fs-5 mx-3 text-center " href="#"
+              <a class="nav-link fs-5 mx-3 text-center " href="learningMode"
                 ><p>> Tryby nauki</p></a
               >
             </li>
@@ -78,10 +80,11 @@
     <div class="container-fluid main ">
         <div class="row">
             <div class="col p-3">
-
+              
             </div>
         </div>
     </div>
+
     <div class="container-fluid footer">
         <div class="row h-100 d-flex align-items-end">
           <div class="col text-end">
