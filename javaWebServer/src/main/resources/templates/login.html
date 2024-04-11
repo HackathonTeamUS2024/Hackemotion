@@ -80,14 +80,14 @@
       <div class="row h-100">
         <div class="col-md-6 d-flex flex-column justify-content-center align-items-center">
             <h1>Zaloguj się</h1>
-            <form>
+            <form method="post">
                 <div class="mb-3 ">
                   <label for="enterEmail1" class="form-label">Adres email</label>
-                  <input type="email" class="form-control" id="enterEmail1">
+                  <input type="email" class="form-control" id="email">
                 </div>
                 <div class="mb-3">
                   <label for="enterPassword1" class="form-label">Hasło</label>
-                  <input type="password" class="form-control" id="enterPassword1">
+                  <input type="password" class="form-control" id="password">
                 </div>
                 <div class="mb-3 form-check">
                   <input type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -99,7 +99,7 @@
         </div>
         <div class="col-md-6 d-flex flex-column justify-content-center align-items-center">
           <h1>Zarejestruj się</h1>
-            <form id="registerForm">
+            <form id="registerForm" method="post">
                 <div class="mb-3 ">
                   <label for="enterEmail2" class="form-label w-100">Adres email:</label>
                   <input type="email" class="form-control" id="enterEmail2">
@@ -109,16 +109,16 @@
                   <input type="password" class="form-control" id="enterPassword2" minlength="8" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Musi zawierać co najmniej jedną cyfrę, jedną dużą i małą literę oraz co najmniej 8 lub więcej znaków" required>
                 </div>
                 <div class="mb-3">
-                    <label for="enterName" class="form-label">Imie:</label>
-                    <input type="text" class="form-control" id="enterName">
+                    <label for="enterName" class="form-label" >Imie:</label>
+                    <input type="text" class="form-control" id="enterName" title="Maxymalnie podaj 30 znaków nie może być puste" required>
                 </div>
                 <div class="mb-3">
                     <label for="enterSurname" class="form-label">Nazwisko:</label>
-                    <input type="text" class="form-control" id="enterSurname">
+                    <input type="text" class="form-control" id="enterSurname" title="Maxymalnie podaj 30 znaków nie może być puste" required>
                 </div>
                 <div class="mb-3">
-                  <label for="age">Lata:</label>
-                  <input type="number" class="form-control" id="birthYear" max="120" min="9">
+                  <label for="age">Rok Urodzenia:</label>
+                  <input type="number" class="form-control" id="birthYear" min="1900" title="musisz mieć przynajmniej 3 lata" required>
               </div>
                 <p>Podaj swoją płeć:</p>
                 <div class=" form-check-inline">
