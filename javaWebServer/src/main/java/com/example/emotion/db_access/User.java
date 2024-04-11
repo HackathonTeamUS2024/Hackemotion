@@ -117,7 +117,15 @@ public class User {
     }
 
     public void setPlaceOfResidence(String placeOfResidence) {
-        this.placeOfResidence = placeOfResidence;
+        if(placeOfResidence.equals("village") || placeOfResidence.equals("smallTown") ||
+           placeOfResidence.equals("midTown") || placeOfResidence.equals("bigTown") ) {
+            this.placeOfResidence = placeOfResidence;
+        }
+        // village
+        // smallTown > 20k
+        // midTown > 20k-100k
+        // bigTown > 100k
+        else throw new IllegalArgumentException("Nieprawidlowa wielkosc miasta");
     }
 
     public String getAdditionalInformation() {
