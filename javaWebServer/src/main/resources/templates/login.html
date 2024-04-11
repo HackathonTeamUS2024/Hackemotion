@@ -78,25 +78,25 @@
 
     <div class="container-fluid main ">
       <div class="row h-100">
+
         <div class="col-md-6 d-flex flex-column justify-content-center align-items-center">
             <h1>Zaloguj się</h1>
-            <form method="post">
-                <div class="mb-3 ">
-                  <label for="enterEmail1" class="form-label">Adres email</label>
+            
+            <form id="loginForm" method="post">
+              <div class="mb-3 ">
+                  <label for="email" class="form-label">Adres email</label>
                   <input type="email" class="form-control" id="email">
-                </div>
-                <div class="mb-3">
-                  <label for="enterPassword1" class="form-label">Hasło</label>
+              </div>
+              <div class="mb-3">
+                  <label for="password" class="form-label">Hasło</label>
                   <input type="password" class="form-control" id="password">
-                </div>
-                <div class="mb-3 form-check">
-                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                  <label class="form-check-label" for="exampleCheck1">Zapamiętaj mnie</label>
-                </div>
-                <button type="submit" class="btn btn-primary">Zaloguj</button>
-            </form>
-        
+              </div>
+              <button type="submit" class="btn btn-primary">Zaloguj</button>
+          </form>
+          
+          
         </div>
+
         <div class="col-md-6 d-flex flex-column justify-content-center align-items-center">
           <h1>Zarejestruj się</h1>
             <form id="registerForm" method="post">
@@ -159,7 +159,8 @@
   
   </script>
 
-  <script src="../bootstrap-5.0.2-dist/bootstrap.js"></script>
-  <script src="/static/js/register.js"></script>
+  <script th:src="@{/js/bootstrap.js}"></script>
+  <script th:src="@{js/register.js}"></script>
+  <script th:src="@{js/login.js}"></script>
   </body>
 </html>
