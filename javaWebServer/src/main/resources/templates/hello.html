@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
->
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -22,10 +20,10 @@
       href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
       rel="stylesheet"
     />
-
-    <link rel="stylesheet" href="../static/css/bootstrap.css" />
-    <link rel="stylesheet" href="../static/css/style.css" />
-    <link rel="shortcut icon" href="../static/zdjecia/ikona i logo.png">
+    
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <link rel="shortcut icon" th:href="@{/zdjecia/ikona i logo.png}">
   </head>
 
   <body>
@@ -33,14 +31,16 @@
       <div class="container-fluid header">
         
         <a href="#"><img
-          src="../static/zdjecia/ikona i logo.png"
+          th:src="@{/zdjecia/ikona i logo.png}"
           class="img-fluid h-100 rounded float-start"
           alt=""
         />
 
         </a>
-
-        <p class="login my-auto me-auto">zaloguj </p>
+        
+        <a class="me-auto" href="#">
+        <p class="login my-auto">zaloguj </p>
+        </a>
 
         <button
           class="navbar-toggler"
@@ -82,7 +82,7 @@
         
         <div class="col p-3">
             <div class="d-flex justify-content-center">
-            <img src="../static/zdjecia/strona glowna.jpg" class="" alt="">
+            <img th:src="@{/zdjecia/strona glowna.jpg}" class="" alt="">
             </div>
             <h2>Jak rozpoznawać wyrażane emocje?</h2>
             <span>
@@ -90,7 +90,7 @@
             </span>
         </br></br></br>
             <div class="pictureQuestion">
-            <img src="../static/zdjecia/question.jpg" class="float-md-start float-sm-none" alt="">
+            <img th:src="@{/zdjecia/question.jpg}" class="float-md-start float-sm-none" alt="">
           </div>
             <h2>Na co zwrócić uwagę?</h2>
             <span>
@@ -128,6 +128,6 @@
   
   </script>
 
-  <script src="bootstrap-5.0.2-dist/bootstrap.js"></script>
+  <script th:src="@{/js/bootstrap.js}"></script>
   </body>
 </html>

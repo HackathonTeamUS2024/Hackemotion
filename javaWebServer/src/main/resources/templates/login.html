@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -21,9 +21,9 @@
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="../bootstrap-5.0.2-dist/css/bootstrap.css" />
-    <link rel="stylesheet" href="../style.css" />
-    <link rel="shortcut icon" href="../../static/zdjecia/ikona i logo.png">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <link rel="shortcut icon" th:href="@{/zdjecia/ikona i logo.png}">
   </head>
 
   <body>
@@ -31,7 +31,7 @@
       <div class="container-fluid header">
         
         <a href="#"><img
-          src="../../static/zdjecia/ikona i logo.png"
+          th:src="@{/zdjecia/ikona i logo.png}"
           class="img-fluid h-100 rounded float-start"
           alt=""
         />
