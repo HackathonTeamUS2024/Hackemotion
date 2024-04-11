@@ -6,7 +6,7 @@ const currentYear = date.getFullYear;
 
 let user = {}
 
-if(addEventListener(submitButton, onclick)) { //pobranie danych z formularza
+submitButton.addEventListener('click', function(){ //pobranie danych z formularza
     user.email = form.querySelector('#enterEmail2').value;       // formularz waliduje
     user.password = form.querySelector('#enterPassword2').value; // te dane
     let name = form.querySelector('#enterName').value;
@@ -20,7 +20,23 @@ if(addEventListener(submitButton, onclick)) { //pobranie danych z formularza
     validateBirthYear(birthYear);
     validateSex(sex);
     validateCity(city);
-}
+
+    fetch("localhost:8080/api/login", {
+    method: "POST",
+    body: JSON.stringify({
+    userId: 1,
+    title: "Fix my bugs",
+    completed: false
+    }),
+    headers: {
+    "Content-type": "application/json; charset=UTF-8"
+    }
+})
+.then((response) =>  response.json())
+.then((json) =>  console.log(json));
+
+
+});
 
 function validateName(name) {
     if(name.length <= 30 && name != null) {
