@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="490bdcd9-d903-47da-9f67-bc7c9a9cbd30" name="Changes" comment="" />
+    <list default="true" id="490bdcd9-d903-47da-9f67-bc7c9a9cbd30" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javaWebServer/src/main/java/com/example/emotion/db_access/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/javaWebServer/src/main/java/com/example/emotion/db_access/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javaWebServer/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/javaWebServer/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javaWebServer/src/main/resources/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/javaWebServer/src/main/resources/templates/login.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -38,9 +43,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 0
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2ex7zqotAWvyroBLpMCWSqo1VPN" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -53,7 +58,7 @@
     "Gradle.javaWebServer [:EmotionApplication.main()].executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "server",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/Hackemotion",
     "project.structure.last.edited": "Project",

@@ -99,7 +99,7 @@
         </div>
         <div class="col-md-6 d-flex flex-column justify-content-center align-items-center">
           <h1>Zarejestruj się</h1>
-            <form>
+            <form id="registerForm">
                 <div class="mb-3 ">
                   <label for="enterEmail2" class="form-label w-100">Adres email:</label>
                   <input type="email" class="form-control" id="enterEmail2">
@@ -117,16 +117,16 @@
                     <input type="text" class="form-control" id="enterSurname">
                 </div>
                 <div class="mb-3">
-                  <label for="age">Rok Urodzenia:</label>
-                  <input type="number" class="form-control" id="age" min="1900">
+                  <label for="age">Lata:</label>
+                  <input type="number" class="form-control" id="birthYear" max="120" min="9">
               </div>
                 <p>Podaj swoją płeć:</p>
                 <div class=" form-check-inline">
-                    <input class="form-check-input" type="radio" name="gender" id="male" value="male"/>
+                    <input class="form-check-input" type="radio" name="gender" id="sex" value="male"/>
                     <label class="form-check-label" for="male"> Mężczyzna </label>
                 </div>
                 <div class="form-check-inline">  
-                    <input class="form-check-input" type="radio" name="gender" id="female" value="female"/>
+                    <input class="form-check-input" type="radio" name="gender" id="sex" value="female"/>
                     <label class="form-check-label" for="female"> Kobieta</label>
                 </div>
                 <br>
@@ -138,9 +138,8 @@
                   <option value="bigTown">Duże miasto(>100tys. mieszkańców)</option>
                 </select>
                 
-                <br>
-                <br>
-                <button type="submit" class="btn btn-primary" id="submit">Zarejestruj</button>
+
+                <button type="submit" class="btn btn-primary" id="register">Zarejestruj</button>
             </form>
         </div>
       </div>
@@ -161,5 +160,6 @@
   </script>
 
   <script src="../bootstrap-5.0.2-dist/bootstrap.js"></script>
+  <script src="/static/js/register.js"></script>
   </body>
 </html>
