@@ -13,16 +13,16 @@ public class ImageUploader {
 
     private RestTemplate restTemplate = new RestTemplate();
 
-    public ResponseEntity<String> uploadImage(File imageFile, String apiUrl) {
+    public ResponseEntity<String> uploadImage(String url, String imagePath) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.MULTIPART_FORM_DATA);
 
         MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
-        Resource resource = new FileSystemResource(imageFile);
+        Resource resource = new FileSystemResource(new File(imagePath));
         body.add("image", resource);
 
         HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(body, headers);
 
-        return restTemplate.exchange(apiUrl, HttpMethod.POST, requestEntity, String.class);
+        return restTemplate.exchange(url, HttpMethod.POST, requestEntity, String.class);
     }
 }
