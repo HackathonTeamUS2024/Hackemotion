@@ -79,13 +79,16 @@ public class APIController {
         return pickedFiles;
     }
     @RequestMapping(value="/answers", method = RequestMethod.POST)
-    public @ResponseBody String postAnswers(@RequestParam List<String> drawn, @RequestParam List<String> answered, long userId){
+    public String postAnswers(@RequestParam List<String> drawn, @RequestParam List<String> answered, long userId){
         Training_Session newSession = new Training_Session();
-        newSession.setSessionId(UUID.randomUUID().toString());
+//        User actualUser = userRepository.findByToken(token);
+        Random rand = new Random();
+        newSession.setSessionId(rand.nextLong(Long.MAX_VALUE));
         newSession.setUserId(userId);
         trainingSessionRepository.save(newSession);
         for(int i=0;i<drawn.size()-1;i++){
             Training_Session_Result newSessionResult = new Training_Session_Result();
+            newSessionResult.setResultId(newSession.getSessionId());
             newSessionResult.setDrawn(drawn.get(i));
             newSessionResult.setAnswer(answered.get(i));
             trainingSessionResultRepository.save(newSessionResult);

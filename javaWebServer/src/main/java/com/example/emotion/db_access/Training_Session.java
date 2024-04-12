@@ -4,18 +4,15 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Training_Session {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    private String sessionId;
-    private String type;
-    private Integer age;
+    private long sessionId;
     private String startedAt;
     private String endedAt;
     private long userId;
-    private String imageCategory;
 
     public Training_Session() {
     }
@@ -28,11 +25,11 @@ public class Training_Session {
         this.userId = userId;
     }
 
-    public String getSessionId() {
+    public long getSessionId() {
         return sessionId;
     }
 
-    public void setSessionId(String sessionId) {
+    public void setSessionId(long sessionId) {
         this.sessionId = sessionId;
     }
 }
