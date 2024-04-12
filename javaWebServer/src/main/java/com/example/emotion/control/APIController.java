@@ -29,6 +29,9 @@ public class APIController {
         MessageDigest md = MessageDigest.getInstance("SHA-512");
             if(UserLog.login(password)) {
                 response.put("message", 1);
+                UUID uuid = UUID.randomUUID();
+                userRepository.updateToken(email,uuid.toString());
+                response.put("token", uuid.toString());
                 return response;
             }
         return response.put("message", 0);
@@ -49,12 +52,12 @@ public class APIController {
         catch (Exception e) {
             response.put("message", e.getMessage());
         }
-        response.put("haslo", newUser.getPassword());
         response.put("message", "Registered successfully");
         return response;
     }
     @RequestMapping(value="/getRes", method = RequestMethod.GET)
     public @ResponseBody String getRes(@RequestParam String type){
+
         return "Chciany typ: " + type;
     }
     public void saveUser(User user) {
