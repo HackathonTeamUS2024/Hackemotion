@@ -18,11 +18,26 @@ window.onload = function() {
         })
         .then(data => {
             console.log(data);  // Tutaj logujemy dane do konsoli
-            alert('Sukces: ' + JSON.stringify(data));  // Tutaj wyświetlamy dane w alercie
+            alert('Sukces: ' + JSON.stringify(data));
+            // Zapisanie tokena do localStorage
+            localStorage.setItem('token', data.token);
+
+            // Odczytanie tokena z localStorage
+            let token = localStorage.getItem('token');
+            console.log(token); // Wyświetla "TwojToken"
+
+
+            localStorage.removeItem('token');
+
         })
         .catch((error) => {
             console.error(error);  // Tutaj logujemy błąd do konsoli
             alert('Błąd: ' + error.message);  // Tutaj wyświetlamy błąd w alercie
         });
     });
+
+
+
+
+    
 }

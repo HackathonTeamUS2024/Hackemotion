@@ -81,13 +81,17 @@
     <div class="container-fluid main my-3">
       <div class="row h-100 my-4">
         <div class="col-md-6 d-flex justify-content-center align-items-center">
-          <figure>
+          <figure id="figure">
             <img
             th:src="@{/zdjecia/megaphone.png}"
             class="img-fluid photo"
             alt=""
           />
             <figcaption class="text-center">Naciśnij mnie</figcaption>
+            <audio controls>
+              <source id="myAudio" th:src="@{audio/anger/0004_0.wav}" type="audio/mpeg">
+              Your browser does not support the audio element.
+            </audio>
         </figure>
         </div>
         <div class="col-md-6 d-flex flex-column">
@@ -153,5 +157,6 @@
   </script>
 
   <script src="../bootstrap-5.0.2-dist/bootstrap.js"></script>
+  <script th:src="@{/js/getResorceMusic.js}"></script>
   </body>
 </html>
