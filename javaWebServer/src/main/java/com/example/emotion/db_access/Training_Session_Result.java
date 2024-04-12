@@ -9,7 +9,8 @@ import jakarta.persistence.Id;
 public class Training_Session_Result {
         @Id
         @GeneratedValue(strategy= GenerationType.AUTO)
-        private String resultId;
+        private long resultSessionId;
+        private long resultId;
         private String answer;
         private String drawn;
 
@@ -41,11 +42,11 @@ public class Training_Session_Result {
     public Training_Session_Result() {
     }
 
-    public String getResultId() {
+    public long getResultId() {
         return resultId;
     }
 
-    public void setResultId(String resultId) {
+    public void setResultId(long resultId) {
         this.resultId = resultId;
     }
 
