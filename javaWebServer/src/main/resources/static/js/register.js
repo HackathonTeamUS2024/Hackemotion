@@ -8,8 +8,20 @@ window.onload = function() {
         formData.append('name', document.getElementById("name").value);
         formData.append('surname', document.getElementById("surname").value);
         formData.append('birthYear', document.getElementById("birthYear").value);
-        formData.append('sex',document.getElementsByClassName("gender").value);
+
+        let genderRadios = document.getElementsByName("gender");
+        for(let i = 0; i < genderRadios.length; i++) {
+            if(genderRadios[i].checked) {
+                formData.append('sex', genderRadios[i].value);
+                break;
+            }
+        }
+
         formData.append('placeOfResidence', document.getElementById("city").value);
+
+        // Tworzenie tablicy z danymi
+        let dataArray = Array.from(formData.entries());
+        alert(dataArray);  // Tutaj logujemy dane do konsoli
 
         fetch('/api/register', {
             method: 'POST',

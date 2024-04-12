@@ -27,10 +27,15 @@ public class APIController {
         ObjectNode response = JsonNodeFactory.instance.objectNode();
         User UserLog = userRepository.findByEmail(email);
         MessageDigest md = MessageDigest.getInstance("SHA-512");
-            if(UserLog.login(password)) {
+        try {
+            if (UserLog.login(password)) {
                 response.put("message", 1);
                 return response;
             }
+        }
+        catch(Exception e){
+            return response.put("message", e.getMessage());
+        }
         return response.put("message", 0);
     }
     @PostMapping("/register")
@@ -49,12 +54,12 @@ public class APIController {
         catch (Exception e) {
             response.put("message", e.getMessage());
         }
-        response.put("haslo", newUser.getPassword());
         response.put("message", "Registered successfully");
         return response;
     }
     @RequestMapping(value="/getRes", method = RequestMethod.GET)
     public @ResponseBody String getRes(@RequestParam String type){
+
         return "Chciany typ: " + type;
     }
     public void saveUser(User user) {
