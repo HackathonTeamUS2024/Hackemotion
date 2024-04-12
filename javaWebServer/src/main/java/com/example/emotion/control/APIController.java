@@ -33,13 +33,18 @@ public class APIController {
         ObjectNode response = JsonNodeFactory.instance.objectNode();
         User UserLog = userRepository.findByEmail(email);
         MessageDigest md = MessageDigest.getInstance("SHA-512");
-            if(UserLog.login(password)) {
+        try {
+            if (UserLog.login(password)) {
                 response.put("message", 1);
                 UUID uuid = UUID.randomUUID();
                 userRepository.updateToken(email,uuid.toString());
                 response.put("token", uuid.toString());
                 return response;
             }
+        }
+        catch(Exception e){
+            return response.put("message", e.getMessage());
+        }
         return response.put("message", 0);
     }
     @PostMapping("/register")

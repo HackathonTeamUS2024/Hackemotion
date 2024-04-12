@@ -1,79 +1,109 @@
 window.onload = function() {
-    // Przykładowe połączenie z bazą danych i pobranie ścieżki do zdjęcia
-    fetch('/api/getImagePath', {
-        method: 'POST'
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Błąd sieci!');
-        }
-        return response.json(); 
-    })
-    .then(data => {
-        console.log(data);  
+    let randomValue;
+    let tabEmot = new Array();
+    let tabNum = new Array();
+    let answer = new Array();
 
-        // Ustawienie ścieżki do zdjęcia na stronie
-        let imageElement = document.getElementById('photo');
+    for(let l=0; l < 15; l++){
+        randomValue = Math.floor(Math.random() * 6);
+        if (randomValue == 0) tabEmot[l] = "sadness";
+        else if (randomValue == 1) tabEmot[l] = "happiness";
+        else if (randomValue == 2) tabEmot[l] = "anger";
+        else if (randomValue == 3) tabEmot[l] = "fear";
+        else if (randomValue == 4) tabEmot[l] = "surprise";
+        else if (randomValue == 5) tabEmot[l] = "disgust";
+        else l--;
+    }
 
-        let buttonAngry = document.getElementById('angry');
-        let buttonHappy = document.getElementById('happy');
-        let buttonSurprised = document.getElementById('surprised');
-        let buttonSad = document.getElementById('sad');
-        let buttonShamed = document.getElementById('shamed');
-        let buttonFear = document.getElementById('fear');
 
-        var buttons = document.getElementsByTagName('button');
 
-        let k = 0;
-        let answer = new Array();
+    for(let l=0; l < 15; l++){  
+        randomValue = Math.floor(Math.random() * 21) + 1;
+        tabNum[l] = String(randomValue).padStart(4, '0');
+    }
+
+    let imageElement = document.getElementById('photo');
+    let buttons = document.querySelectorAll('button');
+
+    let currentImageIndex = 0;
+
     
-        for(let i = 0;i < data.name.length; i++){
-            switch(data.name[i]) {
-                case 'anger':
-                
-            var buttons = document.getElementsByTagName('button');
-                
-            for (var i = 0; i < buttons.length; i++) {
-                buttons[i].addEventListener('click', function() {
-                    if (this.id === 'anger') {
-                        answer[i] = 'anger'; 
-                        console.log('Kliknięto konkretny przycisk: ' + this.innerHTML);
-                    } else {
-                        answer[i] = String(this.id); 
-                        console.log('Kliknięto inny przycisk: ' + this.innerHTML);
-                    }
-                });
-            }
-       
-                break;
-                case 'contempt':
-                
-                break;
-                case 'fear':
-                
-                break;
-                case 'disgust':
-                
-                break;
-                case 'happiness':
-                
-                break;
-                case 'surprise':
-                
-                break;
-                default:
-                alert("Brak danej w bazie danych");
-            }
+    
+        
+
+    function updateImage() {
+        let sex;
+        if(tabEmot[currentImageIndex] == 'sadness'){
+            if(tabNum[currentImageIndex] >= 14) sex="1";
+            else sex="0";
         }
+        if(tabEmot[currentImageIndex] == 'happiness'){
+            if(tabNum[currentImageIndex] >= 21) sex="1";
+            else sex="0";
+        }
+        if(tabEmot[currentImageIndex] == 'anger'){
+            if(tabNum[currentImageIndex] >= 11) sex="1";
+            else sex="0";
+        }
+        if(tabEmot[currentImageIndex] == 'fear'){
+            if(tabNum[currentImageIndex] >14)
+                tabNum[currentImageIndex] -= randomValue = Math.floor(Math.random() * 13);
+            if(tabNum[currentImageIndex] >= 9) sex="1";
+            else sex="0";
+        }
+        if(tabEmot[currentImageIndex] == 'surprise'){
+            if(tabNum[currentImageIndex] >= 14) sex="1";
+            else sex="0";
+        }
+        if(tabEmot[currentImageIndex] == 'disgust'){
+            if(tabNum[currentImageIndex] >18)
+                tabNum[currentImageIndex] -= randomValue = Math.floor(Math.random() * 17);
+            if(tabNum[currentImageIndex] >= 13) sex="1";
+            else sex="0";
+        }
+        imageElement.src = '/image/' + tabEmot[currentImageIndex] + '/' + tabNum[currentImageIndex].padStart(4,'0') + '_'+ sex + '.jpg';
+    }
 
-
-
-        imageElement.src = data.imagePath;
-
-
-    })
-    .catch((error) => {
-        console.error(error);  
-        alert('Błąd: ' + error.message);  
+    buttons.forEach((button) => {
+        button.addEventListener('click', function() {
+            answer[currentImageIndex] = this.id; 
+            console.log('Kliknięto przycisk: ' + this.innerHTML);
+            currentImageIndex++;
+            if (currentImageIndex < tabEmot.length) {
+                updateImage();
+            } else {
+                console.log('Koniec gry! Twoje odpowiedzi to: ', answer);
+                sendPostRequest(answer);
+            }
+        });
     });
+
+    updateImage();  // Wyświetl pierwsze zdjęcie
+
+
+    function sendPostRequest(tablica) {
+        let formData = new FormData();
+        formData.append('email', 'twoj_email@example.com');
+        formData.append('password', 'twoje_haslo');
+    
+        fetch('/api/login', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Błąd sieci!');
+            }
+            return response.json();  // Tutaj przekształcamy odpowiedź w JSON
+        })
+        .then(data => {
+            console.log(data);  // Tutaj logujemy dane do konsoli
+            alert('Sukces: ' + JSON.stringify(data));  // Tutaj wyświetlamy dane w alercie
+        })
+        .catch((error) => {
+            console.error(error);  // Tutaj logujemy błąd do konsoli
+            alert('Błąd: ' + error.message);  // Tutaj wyświetlamy błąd w alercie
+        });
+    }
+      
 }

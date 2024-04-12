@@ -11,6 +11,10 @@
         formData.append('sex', document.getElementById("sex").value);
         formData.append('placeOfResidence', document.getElementById("city").value);
 
+        // Tworzenie tablicy z danymi
+        let dataArray = Array.from(formData.entries());
+        alert(dataArray);  // Tutaj logujemy dane do konsoli
+
         fetch('/api/register', {
             method: 'post',
             body: formData,

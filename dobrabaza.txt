@@ -4,7 +4,6 @@
 -- MySQL Workbench Forward Engineering
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
-SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
@@ -41,18 +40,14 @@ DEFAULT CHARACTER SET = utf8mb3;
 DROP TABLE IF EXISTS `hackathon`.`resource` ;
 
 CREATE TABLE IF NOT EXISTS `hackathon`.`resource` (
-  `resourseId` INT NOT NULL AUTO_INCREMENT,
+  `resourceId` INT NOT NULL AUTO_INCREMENT,
   `path` VARCHAR(60) NOT NULL,
   `type` ENUM('image', 'audio') NOT NULL,
   `age` ENUM('child', 'young adult', 'middle-aged adults', 'old-aged adults') NULL DEFAULT NULL,
   `sex` ENUM('male', 'female') NULL DEFAULT NULL,
-  `imageCategory` ENUM('face', 'full-body') NULL DEFAULT NULL,
+  `image_category` ENUM('face', 'full-body') NULL DEFAULT NULL,
   `emotion_emotionId` INT NOT NULL,
-  PRIMARY KEY (`resourseId`, `emotion_emotionId`),
-  INDEX `fk_resource_emotion1_idx` (`emotion_emotionId` ASC) VISIBLE,
-  CONSTRAINT `fk_resource_emotion1`
-    FOREIGN KEY (`emotion_emotionId`)
-    REFERENCES `hackathon`.`emotion` (`emotionId`))
+  PRIMARY KEY (`resourceId`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 273
 DEFAULT CHARACTER SET = utf8mb3;
@@ -83,12 +78,8 @@ CREATE TABLE IF NOT EXISTS `hackathon`.`training_session` (
   `startedAt` DATETIME NOT NULL,
   `endedAt` DATETIME NOT NULL,
   `user_userId` INT NOT NULL,
-  PRIMARY KEY (`sessionId`, `user_userId`),
-  INDEX `fk_training_session_user1_idx` (`user_userId` ASC) VISIBLE,
-  CONSTRAINT `fk_training_session_user1`
-    FOREIGN KEY (`user_userId`)
-    REFERENCES `hackathon`.`user` (`userId`))
-ENGINE = InnoDB
+  PRIMARY KEY (`sessionId`, `user_userId`))
+ENGINE = InnoDBuser
 DEFAULT CHARACTER SET = utf8mb3;
 
 
@@ -102,24 +93,11 @@ CREATE TABLE IF NOT EXISTS `hackathon`.`training_session_result` (
   `startedAt` DATETIME NOT NULL,
   `endedAt` DATETIME NOT NULL,
   `emotion_emotionId` INT NOT NULL,
-  `training_session_sessionId` INT NOT NULL,
-  `training_session_user_userId` INT NOT NULL,
-  `resource_resourseId` INT NOT NULL,
-  `resource_emotion_emotionId` INT NOT NULL,
-  PRIMARY KEY (`resultId`, `emotion_emotionId`, `training_session_sessionId`, `training_session_user_userId`, `resource_resourseId`, `resource_emotion_emotionId`),
-  INDEX `fk_training_session_result_emotion1_idx` (`emotion_emotionId` ASC) VISIBLE,
-  INDEX `fk_training_session_result_training_session1_idx` (`training_session_sessionId` ASC, `training_session_user_userId` ASC) VISIBLE,
-  INDEX `fk_training_session_result_resource1_idx` (`resource_resourseId` ASC, `resource_emotion_emotionId` ASC) VISIBLE,
-  CONSTRAINT `fk_training_session_result_emotion1`
-    FOREIGN KEY (`emotion_emotionId`)
-    REFERENCES `hackathon`.`emotion` (`emotionId`),
-  CONSTRAINT `fk_training_session_result_resource1`
-    FOREIGN KEY (`resource_resourseId` , `resource_emotion_emotionId`)
-    REFERENCES `hackathon`.`resource` (`resourseId` , `emotion_emotionId`),
-  CONSTRAINT `fk_training_session_result_training_session1`
-    FOREIGN KEY (`training_session_sessionId` , `training_session_user_userId`)
-    REFERENCES `hackathon`.`training_session` (`sessionId` , `user_userId`))
-ENGINE = InnoDB
+  `sessionId` INT NOT NULL,
+  `userId` INT NOT NULL,
+  `resourceId` INT NOT NULL,
+  `emotionId` INT NOT NULL,
+  PRIMARY KEY (`resultId`))
 DEFAULT CHARACTER SET = utf8mb3;
 
 

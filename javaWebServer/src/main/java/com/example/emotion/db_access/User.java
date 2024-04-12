@@ -154,7 +154,6 @@ public class User {
     }
     public void setPassword(String password) throws NoSuchAlgorithmException {
         SecureRandom random = new SecureRandom();
-        if(!password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{6,13}$")){ throw new IllegalArgumentException(); }
         random.nextBytes(salt);
         MessageDigest md = MessageDigest.getInstance("SHA-512");
         md.update(salt);
