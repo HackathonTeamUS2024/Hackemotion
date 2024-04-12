@@ -120,15 +120,11 @@
                   <label for="age">Lata:</label>
                   <input type="number" class="form-control" id="birthYear">
               </div>
-                <p>Podaj swoją płeć:</p>
-                <div class=" form-check-inline">
-                    <input class="form-check-input" type="radio" name="gender" id="sex-male" value="male"/>
-                    <label class="form-check-label" for="male"> Mężczyzna </label>
-                </div>
-                <div class="form-check-inline">  
-                    <input class="form-check-input" type="radio" name="gender" id="sex-female" value="female"/>
-                    <label class="form-check-label" for="female"> Kobieta</label>
-                </div>
+                <p>Wybierz płeć:</p>
+                <select id="sex">
+                  <option value="female">Kobieta</option>
+                  <option value="male">Mężczyzna</option>
+                </select>
                 <br>
                 <br>
                 <select id="city">

@@ -1,4 +1,4 @@
-window.onload = function() {
+
     document.querySelector('#registerForm').addEventListener('submit', function(event) {
         event.preventDefault();
 
@@ -8,15 +8,7 @@ window.onload = function() {
         formData.append('name', document.getElementById("name").value);
         formData.append('surname', document.getElementById("surname").value);
         formData.append('birthYear', document.getElementById("birthYear").value);
-
-        let genderRadios = document.getElementsByName("gender");
-        for(let i = 0; i < genderRadios.length; i++) {
-            if(genderRadios[i].checked) {
-                formData.append('sex', genderRadios[i].value);
-                break;
-            }
-        }
-
+        formData.append('sex', document.getElementById("sex").value);
         formData.append('placeOfResidence', document.getElementById("city").value);
 
         // Tworzenie tablicy z danymi
@@ -24,8 +16,8 @@ window.onload = function() {
         alert(dataArray);  // Tutaj logujemy dane do konsoli
 
         fetch('/api/register', {
-            method: 'POST',
-            body: formData
+            method: 'post',
+            body: formData,
         })
         .then(response => {
             if (!response.ok) {
@@ -42,4 +34,4 @@ window.onload = function() {
             alert('Błąd: ' + error.message);  // Tutaj wyświetlamy błąd w alercie
         });
     });
-}
+
