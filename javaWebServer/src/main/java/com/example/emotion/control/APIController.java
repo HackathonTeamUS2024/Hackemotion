@@ -1,7 +1,6 @@
 package com.example.emotion.control;
 
-import com.example.emotion.db_access.User;
-import com.example.emotion.db_access.UserRepository;
+import com.example.emotion.db_access.*;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +11,8 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.UUID;
+import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 @RestController
 @Service
@@ -20,6 +20,12 @@ import java.util.UUID;
 public class APIController {
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private ResourceRepository resourceRepository;
+    @Autowired
+    private Training_SessionRepository trainingSessionRepository;
+    @Autowired
+    private Training_Session_ResultRepository trainingSessionResultRepository;
     private final ObjectNode response = JsonNodeFactory.instance.objectNode();
     @Transactional
     @PostMapping("/login")
@@ -55,11 +61,33 @@ public class APIController {
         response.put("message", "Registered successfully");
         return response;
     }
-    @RequestMapping(value="/getRes", method = RequestMethod.GET)
-    public @ResponseBody String getRes(@RequestParam String type){
-
-        return "Chciany typ: " + type;
+    public int getRandomNumber(int min, int max) {
+        return (int) ((Math.random() * (max - min)) + min);
     }
+    @RequestMapping(value="/getRes", method = RequestMethod.GET)
+    public @ResponseBody String[] getRes(@RequestParam String type){
+        String[] pickedFiles = new String[15];
+        List<Resource> files = resourceRepository.findRandomResource(type);
+        for(int i=0;i<15;i++){
+            pickedFiles[i]=files.get(getRandomNumber(0,files.size())-1).getPath();
+        }
+        return pickedFiles;
+    }
+    @RequestMapping(value="/answers", method = RequestMethod.POST)
+    public @ResponseBody String postAnswers(@RequestParam List<String> drawn, @RequestParam List<String> answered, long userId){
+        Training_Session newSession = new Training_Session();
+        newSession.setSessionId(UUID.randomUUID().toString());
+        newSession.setUserId(userId);
+        trainingSessionRepository.save(newSession);
+        for(int i=0;i<drawn.size()-1;i++){
+            Training_Session_Result newSessionResult = new Training_Session_Result();
+            newSessionResult.setDrawn(drawn.get(i));
+            newSessionResult.setAnswer(answered.get(i));
+            trainingSessionResultRepository.save(newSessionResult);
+        }
+        return "done";
+    }
+
     public void saveUser(User user) {
         userRepository.save(user);
     }

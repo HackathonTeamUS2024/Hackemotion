@@ -7,7 +7,7 @@ import org.springframework.data.repository.query.Param;
 
 public interface UserRepository extends JpaRepository<User, Long> {
     @Modifying
-    @Query("UPDATE User SET token=:email where email=:token")
+    @Query("UPDATE User SET token=:token where email=:email")
     void updateToken(@Param("email") String email,@Param("token") String token);
     User findByEmail(String email);
 }
